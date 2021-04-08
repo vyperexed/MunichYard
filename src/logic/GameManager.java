@@ -57,5 +57,11 @@ public class GameManager {
         /** TODO: Check for game win */
     }
 
+    /*
+    MisterX immer erster in der Queue
+    Bei Doppelzug Rundenneustart
+    Bei 2. Zug vom Doppelzug vorherigerZugDoppelzug muss false sein sonst gehts nicht
+     */
+
     /** TODO: Update MisterX visibility */
 }
