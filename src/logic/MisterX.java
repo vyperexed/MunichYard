@@ -21,7 +21,7 @@ public class MisterX extends PlayerCharacter {
 
 
     public boolean moveTaxi(Station station) {
-        if(!position.getTaxiConnections().contains(station))
+        if (!position.getTaxiConnections().contains(station))
             return false;
         position = station;
         presentMoves.add(MoveType.Taxi);
@@ -29,7 +29,7 @@ public class MisterX extends PlayerCharacter {
     }
 
     public boolean moveBus(Station station) {
-        if(!position.getBusConnections().contains(station))
+        if (!position.getBusConnections().contains(station))
             return false;
         position = station;
         presentMoves.add(MoveType.Bus);
@@ -37,15 +37,15 @@ public class MisterX extends PlayerCharacter {
     }
 
     public boolean moveUnderground(Station station) {
-        if(!position.getUndergroundConnections().contains(station))
+        if (!position.getUndergroundConnections().contains(station))
             return false;
         position = station;
         presentMoves.add(MoveType.Underground);
-         return true;
+        return true;
     }
 
     public boolean moveBlackTicket(Station station) {
-        if(!position.getAllConnections().contains(station))
+        if (!position.getAllConnections().contains(station))
             return false;
         blackTicketCount--;
         position = station;
@@ -53,7 +53,14 @@ public class MisterX extends PlayerCharacter {
         return true;
     }
 
-    /**
-     * TODO: blackTicketSetzen(), doppelzugTicketSetzen(), ?( bewegen() )
-     */
+    public boolean doubleTicket() {
+        if (doubleTicketCount <= 0 && presentMoves != DoubleTicket)
+            return false;
+        doubleTicketCount--;
+        return true;
+
+        /**
+         * TODO: blackTicketSetzen(), doppelzugTicketSetzen(), ?( bewegen() )
+         */
+    }
 }

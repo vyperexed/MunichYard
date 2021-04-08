@@ -11,6 +11,7 @@ public class GameManager {
     private ArrayList<Station> startingPositions;
     private Queue<PlayerCharacter> turnRemainingPlayers;
     private PlayerCharacter currentPlayer;
+    private boolean lastCardTimes2;
 
     /*
      */
