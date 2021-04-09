@@ -6,38 +6,37 @@ import java.util.Random;
 
 public class GameManager {
 
-    private PlayerCharacter clientPlayer;
-    private ArrayList<PlayerCharacter> playerList;
-    private ArrayList<Station> startingPositions;
-    private Queue<PlayerCharacter> turnRemainingPlayers;
-    private PlayerCharacter currentPlayer;
-    private boolean lastCardTimes2;
+    private static PlayerCharacter clientPlayer;
+    private static ArrayList<PlayerCharacter> playerList;
+    private static ArrayList<Station> startingPositions;
+    private static Queue<PlayerCharacter> turnRemainingPlayers;
+    private static PlayerCharacter currentPlayer;
 
     /*
      */
-    private ArrayList<Boolean> misterXVisibility;
-    private int misterXMoveCounter;
+    private static ArrayList<Boolean> misterXVisibility;
+    private static int misterXMoveCounter;
 
-    public void setClientPlayer(PlayerCharacter clientPlayer) {
-        this.clientPlayer = clientPlayer;
+    public static void setClientPlayer(PlayerCharacter _clientPlayer) {
+        clientPlayer = _clientPlayer;
     }
 
-    public void setPlayerList(ArrayList<PlayerCharacter> playerList) {
-        this.playerList = playerList;
+    public static void setPlayerList(ArrayList<PlayerCharacter> _playerList) {
+        playerList = _playerList;
     }
 
-    public void setStartingPositions(ArrayList<Station> startingPositions) {
-        this.startingPositions = startingPositions;
+    public static void setStartingPositions(ArrayList<Station> _startingPositions) {
+        startingPositions = _startingPositions;
     }
 
-    public PlayerCharacter getPlayer(String name) {
+    public static PlayerCharacter getPlayer(String name) {
         for(PlayerCharacter p : playerList)
             if(p.getName().equals(name))
                 return p;
         return null;
     }
 
-    public void placePlayerCharacters() {
+    public static void placePlayerCharacters() {
         for(PlayerCharacter p : playerList) {
             int i = new Random().nextInt(startingPositions.size());
             p.position = startingPositions.get(i);
@@ -45,13 +44,13 @@ public class GameManager {
         }
     }
 
-    public void nextRound() {
+    public static void nextRound() {
         turnRemainingPlayers.clear();
         turnRemainingPlayers.addAll(playerList);
         nextTurn();
     }
 
-    public void nextTurn() {
+    public static void nextTurn() {
         if(turnRemainingPlayers.size() <= 0)
             nextRound();
         currentPlayer = turnRemainingPlayers.remove();

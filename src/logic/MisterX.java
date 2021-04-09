@@ -6,6 +6,7 @@ public class MisterX extends PlayerCharacter {
     private int blackTicketCount;
     private int doubleTicketCount;
     private ArrayList<MoveType> presentMoves;
+    private int wasDoubleTicket = 0;
 
     public int getBlackTicketCount() {
         return blackTicketCount;
@@ -25,6 +26,11 @@ public class MisterX extends PlayerCharacter {
             return false;
         position = station;
         presentMoves.add(MoveType.Taxi);
+        if(wasDoubleTicket == 2) {
+            GameManager.nextRound();
+
+        }
+        wasDoubleTicket--;
         return true;
     }
 
@@ -33,6 +39,11 @@ public class MisterX extends PlayerCharacter {
             return false;
         position = station;
         presentMoves.add(MoveType.Bus);
+        if(wasDoubleTicket == 2) {
+            GameManager.nextRound();
+
+        }
+        wasDoubleTicket--;
         return true;
     }
 
@@ -41,6 +52,11 @@ public class MisterX extends PlayerCharacter {
             return false;
         position = station;
         presentMoves.add(MoveType.Underground);
+        if(wasDoubleTicket == 2) {
+            GameManager.nextRound();
+
+        }
+        wasDoubleTicket--;
         return true;
     }
 
@@ -50,13 +66,19 @@ public class MisterX extends PlayerCharacter {
         blackTicketCount--;
         position = station;
         presentMoves.add(MoveType.Black);
+        if(wasDoubleTicket == 2) {
+            GameManager.nextRound();
+
+        }
+        wasDoubleTicket--;
         return true;
     }
 
     public boolean doubleTicket() {
-        if (doubleTicketCount <= 0 && presentMoves != DoubleTicket)
+        if (doubleTicketCount <= 0 || wasDoubleTicket >= 1)
             return false;
         doubleTicketCount--;
+        wasDoubleTicket = 2;
         return true;
 
         /**
